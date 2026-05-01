@@ -81,7 +81,7 @@ export default function EditorToolbar({ editor }) {
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         isActive={editor.isActive('bulletList')}
         label="Bullet List"
-        title="Bullet List (Ctrl+Shift+7)"
+        title="Bullet List"
       >
         •
       </ToolbarButton>
@@ -90,7 +90,7 @@ export default function EditorToolbar({ editor }) {
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         isActive={editor.isActive('orderedList')}
         label="Numbered List"
-        title="Numbered List (Ctrl+Shift+8)"
+        title="Numbered List"
       >
         1.
       </ToolbarButton>

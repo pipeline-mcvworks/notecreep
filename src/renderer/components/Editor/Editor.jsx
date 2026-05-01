@@ -7,22 +7,6 @@ import useAutosave from '../../hooks/useAutosave';
 import '../../styles/editor.css';
 
 export default function Editor({ noteId, initialContent, onSave }) {
-  const editor = useEditor({
-    extensions: [
-      StarterKit.configure({
-        heading: {
-          levels: [1, 2, 3],
-        },
-      }),
-      Underline,
-    ],
-    content: initialContent || '<p>Start writing...</p>',
-    onUpdate: ({ editor }) => {
-      const html = editor.getHTML();
-      autosave(html);
-    },
-  });
-
   const saveToStorage = useCallback(
     (content) => {
       if (onSave) {
@@ -33,6 +17,31 @@ export default function Editor({ noteId, initialContent, onSave }) {
   );
 
   const autosave = useAutosave(saveToStorage, 1000);
+
+  const editor = useEditor({
+    extensions: [
+      StarterKit.configure({
+        heading: {
+          levels: [1, 2, 3],
+        },
+      }),
+      Underline,
+      {
+        name: 'keymap',
+        addKeyboardShortcuts() {
+          return {
+            'Ctrl-Shift-7': () => this.editor.chain().focus().toggleBulletList().run(),
+            'Ctrl-Shift-8': () => this.editor.chain().focus().toggleOrderedList().run(),
+          };
+        },
+      },
+    ],
+    content: initialContent || '<p>Start writing...</p>',
+    onUpdate: ({ editor }) => {
+      const html = editor.getHTML();
+      autosave(html);
+    },
+  });
 
   if (!editor) {
     return null;
