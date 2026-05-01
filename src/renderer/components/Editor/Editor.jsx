@@ -2,7 +2,7 @@ import React, { useCallback, useRef } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
-import Extension from '@tiptap/core';
+import { Extension } from '@tiptap/core';
 import EditorToolbar from './EditorToolbar';
 import useAutosave from '../../hooks/useAutosave';
 import '../../styles/editor.css';
