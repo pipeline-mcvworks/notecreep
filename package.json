@@ -11,7 +11,7 @@
     "build:renderer": "vite build",
     "build:main": "tsc -p tsconfig.main.json",
     "start": "npm run build && electron .",
-    "electron:dev": "concurrently -k \"npm run dev:renderer\" \"wait-on http://localhost:5173 && npm run build:main && electron .\"",
+    "electron:dev": "concurrently -k \"npm run dev:renderer\" \"wait-on http://localhost:5173 && npm run build:main && cross-env NODE_ENV=development electron .\"",
     "smoke:storage": "tsc --module commonjs --esModuleInterop --target ES2020 --outDir dist-smoke src/main/storage/smoke-test.ts && node dist-smoke/main/storage/smoke-test.js",
     "dist": "npm run build && electron-builder"
   },
@@ -29,7 +29,8 @@
     "electron-builder": "^24.9.0",
     "typescript": "^5.3.0",
     "vite": "^5.1.0",
-    "wait-on": "^7.2.0"
+    "wait-on": "^7.2.0",
+    "cross-env": "^7.0.3"
   },
   "dependencies": {
     "@tiptap/core": "^2.1.0",
