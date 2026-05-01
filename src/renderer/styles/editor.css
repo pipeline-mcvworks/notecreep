@@ -1,0 +1,93 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  background: #f9f9f9;
+  border-bottom: 1px solid #ccc;
+}
+
+.editor-toolbar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.editor-toolbar-button:hover {
+  background: #e0e0e0;
+  border-color: #bbb;
+}
+
+.editor-toolbar-button.active {
+  background: #d0d0ff;
+  border-color: #8888ff;
+  color: #000;
+}
+
+.editor-toolbar-separator {
+  width: 1px;
+  height: 24px;
+  background: #ccc;
+  margin: 0 4px;
+}
+
+.editor-content {
+  padding: 16px;
+  min-height: 300px;
+  outline: none;
+}
+
+.editor-content p {
+  margin: 0 0 8px;
+}
+
+.editor-content h1 {
+  font-size: 1.8em;
+  margin: 16px 0 8px;
+}
+
+.editor-content h2 {
+  font-size: 1.5em;
+  margin: 14px 0 6px;
+}
+
+.editor-content h3 {
+  font-size: 1.2em;
+  margin: 12px 0 4px;
+}
+
+.editor-content ul,
+.editor-content ol {
+  padding-left: 24px;
+  margin: 8px 0;
+}
+
+.editor-content li {
+  margin: 4px 0;
+}
+
+.editor-content code {
+  background: #f0f0f0;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
