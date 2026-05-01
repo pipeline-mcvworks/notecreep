@@ -10,25 +10,25 @@ export default function EditorToolbar({ editor }) {
       <button
         className={`editor-toolbar-button ${editor.isActive('bold') ? 'active' : ''}`}
         onClick={() => editor.chain().focus().toggleBold().run()}
-        title="Bold"
+        title="Bold (Ctrl+B)"
       >
         <strong>B</strong>
       </button>
       <button
         className={`editor-toolbar-button ${editor.isActive('italic') ? 'active' : ''}`}
         onClick={() => editor.chain().focus().toggleItalic().run()}
-        title="Italic"
+        title="Italic (Ctrl+I)"
       >
         <em>I</em>
       </button>
       <button
         className={`editor-toolbar-button ${editor.isActive('underline') ? 'active' : ''}`}
         onClick={() => editor.chain().focus().toggleUnderline().run()}
-        title="Underline"
+        title="Underline (Ctrl+U)"
       >
         <u>U</u>
       </button>
-      <div className="editor-toolbar-separator" />
+      <span className="editor-toolbar-separator" />
       <button
         className={`editor-toolbar-button ${editor.isActive('heading', { level: 1 }) ? 'active' : ''}`}
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
@@ -50,7 +50,7 @@ export default function EditorToolbar({ editor }) {
       >
         H3
       </button>
-      <div className="editor-toolbar-separator" />
+      <span className="editor-toolbar-separator" />
       <button
         className={`editor-toolbar-button ${editor.isActive('bulletList') ? 'active' : ''}`}
         onClick={() => editor.chain().focus().toggleBulletList().run()}
@@ -65,7 +65,7 @@ export default function EditorToolbar({ editor }) {
       >
         1.
       </button>
-      <div className="editor-toolbar-separator" />
+      <span className="editor-toolbar-separator" />
       <button
         className={`editor-toolbar-button ${editor.isActive('code') ? 'active' : ''}`}
         onClick={() => editor.chain().focus().toggleCode().run()}

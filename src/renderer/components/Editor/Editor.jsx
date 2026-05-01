@@ -1,10 +1,21 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
+import Extension from '@tiptap/core';
 import EditorToolbar from './EditorToolbar';
 import useAutosave from '../../hooks/useAutosave';
 import '../../styles/editor.css';
+
+const keymapExtension = Extension.create({
+  name: 'keymap',
+  addKeyboardShortcuts() {
+    return {
+      'Ctrl-Shift-7': () => this.editor.chain().focus().toggleBulletList().run(),
+      'Ctrl-Shift-8': () => this.editor.chain().focus().toggleOrderedList().run(),
+    };
+  },
+});
 
 export default function Editor({ noteId, initialContent, onSave }) {
   const saveToStorage = useCallback(
@@ -17,6 +28,8 @@ export default function Editor({ noteId, initialContent, onSave }) {
   );
 
   const autosave = useAutosave(saveToStorage, 1000);
+  const autosaveRef = useRef(autosave);
+  autosaveRef.current = autosave;
 
   const editor = useEditor({
     extensions: [
@@ -26,20 +39,12 @@ export default function Editor({ noteId, initialContent, onSave }) {
         },
       }),
       Underline,
-      {
-        name: 'keymap',
-        addKeyboardShortcuts() {
-          return {
-            'Ctrl-Shift-7': () => this.editor.chain().focus().toggleBulletList().run(),
-            'Ctrl-Shift-8': () => this.editor.chain().focus().toggleOrderedList().run(),
-          };
-        },
-      },
+      keymapExtension,
     ],
     content: initialContent || '<p>Start writing...</p>',
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
-      autosave(html);
+      autosaveRef.current(html);
     },
   });
 
