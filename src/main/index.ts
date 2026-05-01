@@ -27,6 +27,9 @@ if (!gotLock) {
 
     windowManager = new WindowManager(config);
     windowManager.createWindow();
+    if (process.env.NODE_ENV === 'development') {
+      windowManager.show();
+    }
 
     trayManager = new TrayManager();
     trayManager.create(() => windowManager.toggle());

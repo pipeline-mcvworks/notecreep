@@ -80,9 +80,11 @@ export class WindowManager {
       }
     });
 
-    this.win.on('blur', () => {
-      if (this.visible) this.hide();
-    });
+    if (process.env.NODE_ENV !== 'development') {
+      this.win.on('blur', () => {
+        if (this.visible) this.hide();
+      });
+    }
 
     return this.win;
   }
